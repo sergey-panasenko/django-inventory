@@ -6,6 +6,26 @@ from django.utils.translation import gettext_lazy as _
 
 
 
+class Stock(models.Model):
+    ''' Stock model '''
+    name = models.CharField(
+        verbose_name=_('name'),
+        max_length=64,
+    )
+    description = models.TextField(
+        verbose_name=_('description'),
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('stock')
+        verbose_name_plural = _('stocks')
+
+
 class Item(models.Model):
     ''' Item model - All thing in the boxes are described as an item. '''
     name = models.CharField(
@@ -51,26 +71,6 @@ class Image(models.Model):
     class Meta:
         verbose_name = _('image')
         verbose_name_plural = _('images')
-
-
-class Stock(models.Model):
-    ''' Stock model '''
-    name = models.CharField(
-        verbose_name=_('name'),
-        max_length=64,
-    )
-    description = models.TextField(
-        verbose_name=_('description'),
-        null=True,
-        blank=True,
-    )
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = _('stock')
-        verbose_name_plural = _('stocks')
 
 
 class Box(models.Model):
