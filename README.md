@@ -15,6 +15,13 @@ Add `'django-inventory-app'` to your `INSTALLED_APPS` setting.
         ...
     )
 
+Optional:
+
+    PAGE_FORMAT = 'A4'
+    PAGE_MARGIN = 15 # mm
+    CODES_IN_LINE = 6
+    CODES_SPACING = 5 # mm
+
 Add the following to your projects `urls.py` file, substituting `inventory` for whatever you want the quiz base url to be.
 
     urlpatterns = patterns('',
@@ -22,3 +29,4 @@ Add the following to your projects `urls.py` file, substituting `inventory` for 
         path('^inventory/', include('django-inventory-app.urls')),
         ...
     )
+

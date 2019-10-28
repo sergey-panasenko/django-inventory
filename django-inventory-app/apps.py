@@ -1,5 +1,7 @@
 from django.apps import AppConfig
+from django.utils.translation import ugettext_lazy as _
 
 
 class InventoryConfig(AppConfig):
-    name = 'inventory'
+    name = 'django-inventory-app'
+    verbose_name = _("Inventory")
