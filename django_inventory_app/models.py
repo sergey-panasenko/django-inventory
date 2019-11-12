@@ -6,7 +6,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-
 class Stock(models.Model):
     ''' Stock model '''
     name = models.CharField(
@@ -46,9 +45,12 @@ class Box(models.Model):
     )
 
     def __str__(self):
-        return hex(self.code)[2:]
+        if self.code:
+            return hex(self.code)[2:]
+        return '-'
 
     def generate_code(self):
+        """ generate code for new box """
         code = randint(1, 0xFFFFFFF) + 3 * 0x10000000
         while Box.objects.filter(code=code).first():
             code = randint(1, 0x7FFFFFFF)
@@ -69,7 +71,6 @@ class Tag(models.Model):
     class Meta:
         verbose_name = _('tag')
         verbose_name_plural = _('tags')
-
 
 
 class Item(models.Model):

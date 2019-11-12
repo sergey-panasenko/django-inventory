@@ -18,8 +18,6 @@ setup(
     url='https://github.com/sergey-panasenko/django-inventory-app',
     install_requires=[
         'Django>=2.2.6',
-        'PyQRCode>=1.2.1',
         'reportlab>=3.5.31',
-        'svglib>=0.9.2',
     ],
 )

@@ -1,0 +1,53 @@
+{% extends "django_inventory_app/base.html" %}
+{% load i18n static %}
+
+{% block title %}
+{% trans 'Box' %} : {{ box.code|stringformat:"X" }}
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+<a href="{% url 'admin:django_inventory_app_box_change' box.id %}">
+<h3>{% trans 'Box' %} : {{ box.code|stringformat:"X" }}</h3>
+</a>
+{% for item in box.item_set.all %}
+    <div class="item">
+        <h4>{{ item.name }}</h4>
+        <div class="tags">
+        {% for tag in item.tags.all %}
+            <span class="tag">{{ tag }}</span>
+        {% endfor %}
+        </div>
+        {% with image=item.image_set.all|first %}
+            {% if image %}
+                <img src="{{ image.image.url }}">
+            {% endif %}
+    {% endwith %}
+    </div>
+{% endfor %}
+</div>
+
+<style>
+img {
+    max-width:100%
+}
+.wrapper {
+    padding: 10px;
+}
+.tags {
+    padding:10px;
+}
+.tag {
+    border: solid 1px #eeeeee;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+.item h4 {
+    border: solid 1px #eeeeee;
+    border-radius: 4px;
+    padding: 10px 20px;
+}
+</style>
+
+
+{% endblock %}
